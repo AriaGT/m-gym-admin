@@ -1,57 +1,61 @@
 <script>
     import { Link, navigate } from "svelte-routing";
-    import { user } from "../../../stores/User.js";
+    import { ROUTES } from "../../../constants/routes";
 
     const cerrarSesion = () => {
-        user.setUser(null);
+        console.log('sesión cerrada')
         navigate("/login", { replace: true });
     };
 </script>
 
 <nav>
-    {#if $user}
-        <Link to="/home">Home</Link>
-        <Link to="/empleados">Empleados</Link>
-        <Link to="/miembros">Miembros</Link>
-        <Link to="/diarios">Client Diarios</Link>
-        <Link to="/productos">Productos</Link>
-
-        <a on:click={cerrarSesion}>Cerrar Sessión</a>
-    {/if}
+    <Link to={ROUTES.HOME}>
+        <span>INICIO</span>
+    </Link>
+    <Link to={ROUTES.EMPLOYERS}>
+        <span>EMPLEADOS</span>
+    </Link>
+    <Link to={ROUTES.MEMBERS}>
+        <span>MIEMBROS</span>
+    </Link>
+    <Link to={ROUTES.DAILYS}>
+        <span>DIARIOS</span>
+    </Link>
+    <Link to={ROUTES.PRODUCTS}>
+        <span>PRODUCTOS</span>
+    </Link>
+    <span on:click={cerrarSesion} on:keypress={cerrarSesion} role="menuitem" tabindex={ 0 }>CERRAR SESIÓN</span>
 </nav>
 
 <style>
     nav {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 15px;
-    }
-
-    nav {
+        background-color: #2E2E2E80;
+        border-radius: 10px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         gap: 20px;
+        padding: 10px 20px;
+        margin: 20px 0;
+        width: 80%;
+        transition: background-color .2s;
     }
 
-    nav {
-        padding: 5px;
-        margin: 5px;
-        text-transform: uppercase;
+    nav:hover {
+        background-color: #2E2E2E90;
     }
 
-    a {
-        transition: transform 0.2s;
+    span {
+        font-weight: bold;
+        transition: color .2s;
+        color: #C0C0C0;
     }
-
-    a:hover {
-        color: red;
-        font-size: bold;
-        transform: scale(1.1);
+    span:hover {
+        color: #ffffff;
         cursor: pointer;
     }
 
     @media (max-width: 768px) {
         nav {
-            /* width: 70%; */
             display: flex;
             flex-direction: column;
         }

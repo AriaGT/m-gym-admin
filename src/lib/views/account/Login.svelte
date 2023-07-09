@@ -1,6 +1,6 @@
 <script>
-    import { user } from "../../stores/User.js";
     import { navigate } from "svelte-routing";
+    import { ROUTES } from "../../../constants/routes";
 
     export let email = "";
     export let password = "";
@@ -9,15 +9,11 @@
         //Si los campos estan vacios
         if (!email.trim() || !password.trim()) {
             alert("Campos Vacios");
-            //Si estan vacios, no puede seguir el formulario
             return;
         }
 
         if (email === "admin" || password === "admin") {
-            user.setUser({
-                email,
-                password,
-            });
+            console.log('exito')
         } else {
             alert("Usuario o Contraseña Incorrectos");
             return;
@@ -25,7 +21,7 @@
 
 
         //si existe el usuario, se va enviar a perfil
-        navigate("/home", { replace: true });
+        navigate(ROUTES.LOGIN, { replace: true });
     };
 </script>
 
