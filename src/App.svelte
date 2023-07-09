@@ -61,6 +61,7 @@
     overflow: auto;
     width: 80vw;
     max-width: 1280px;
+    text-align: center;
   }
 
   h1 {
