@@ -122,7 +122,7 @@ select {
     column-gap: 10px;
   }
 
-  div:nth-last-child() {
+  div:nth-last-child(-n+1) {
     grid-column: 2 / 3;
     padding-top: 15px;
   }
